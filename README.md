@@ -2,19 +2,7 @@
 
 A cross-platform personal expense tracking application with **cloud synchronization**, built with **FastAPI** and designed for **Android and Web (PC)** clients.
 
-The project focuses on clean backend design, practical authentication, and multi-client data consistency.
 
----
-
-## 🚀 Highlights
-
-- 🔐 Secure user authentication (JWT)
-- 📱 Android + 💻 Web clients
-- ☁️ Centralized backend with synced data
-- 👤 Multi-user support (starting small, scalable by design)
-- 🧱 Clean, extensible architecture
-
----
 
 ## 🧩 Features
 
@@ -31,6 +19,7 @@ The project focuses on clean backend design, practical authentication, and multi
 - Strict user data isolation
 
 ### 🛣 Planned
+- Scan receipts
 - Monthly & category summaries
 - Budget limits
 - Charts & analytics
