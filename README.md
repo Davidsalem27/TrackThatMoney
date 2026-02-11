@@ -31,3 +31,10 @@ A cross-platform personal expense tracking application with **cloud synchronizat
 
 ## 🏗 Architecture
 
+Android App        Web App (PC)
+     │                  │
+     └────── REST API ──┘
+                │
+          FastAPI Backend
+                │
+            SQL Database
