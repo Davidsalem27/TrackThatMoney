@@ -20,6 +20,7 @@ A cross-platform personal expense tracking application with **cloud synchronizat
 
 ### 🛣 Planned
 - Scan receipts
+- Income
 - Monthly & category summaries
 - Budget limits
 - Charts & analytics
