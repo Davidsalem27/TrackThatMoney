@@ -1,46 +1,77 @@
-# TrackThatMoney
-A cross-platform personal expense tracking application with user accounts and cloud synchronization. The app is designed to be used on Android and PC (via a web interface), with a shared backend ensuring data consistency across devices.
+💸 Personal Expense Tracker
 
-✨ Features
-User registration and authentication (email + password)
-Add, edit, and delete personal expenses
+A cross-platform personal expense tracking application with cloud synchronization, built with FastAPI and designed for Android and Web (PC) clients.
+
+The project focuses on clean backend design, practical authentication, and multi-client data consistency.
+
+🚀 Highlights
+
+🔐 Secure user authentication (JWT)
+
+📱 Android + 💻 Web clients
+
+☁️ Centralized backend with synced data
+
+👤 Multi-user support (starting small, scalable by design)
+
+🧱 Clean, extensible architecture
+
+🧩 Features
+✅ Implemented (MVP)
+
+User registration & login
+
+Create / edit / delete expenses
+
 Expense fields:
-  -amount
-  -category
-  -date
-  -optional note
+
+Amount
+
+Category
+
+Date
+
+Optional note
+
 View expense history
-Data synchronized across all devices
-Secure user-specific data isolation
 
-Planned / Future Features
-Monthly and category summaries
-Budget limits per category
-Charts and analytics
+Automatic sync across devices
+
+Strict user data isolation
+
+🛣 Planned
+
+Monthly & category summaries
+
+Budget limits
+
+Charts & analytics
+
 CSV export
-Shared wallets (multiple users sharing expenses)
-Offline support and conflict handling
 
-🏗 Architecture Overview
+Shared wallets
 
-The system follows a client–server architecture:
+Offline support & conflict resolution
 
+🏗 Architecture
 Android App        Web App (PC)
      │                  │
-     └─────── REST API ─┘
+     └────── REST API ──┘
                 │
-           FastAPI Backend
+          FastAPI Backend
                 │
             SQL Database
 
 
-Both clients communicate with the backend via a REST API.
+REST-based communication
 
-Authentication is handled using JWT tokens.
+Stateless backend
 
-All expense data is stored centrally to enable synchronization.
+JWT-based authentication
 
-🧠 Tech Stack
+Designed for easy client expansion
+
+🛠 Tech Stack
 Backend
 
 Python
@@ -51,99 +82,88 @@ SQLAlchemy
 
 PostgreSQL (SQLite for local development)
 
-JWT authentication
+JWT Authentication
 
-Alembic (database migrations)
+Alembic (migrations)
 
-Frontend
+Clients
 
 Android: Kotlin + Retrofit
 
-Web (PC): HTML/CSS/JavaScript (React planned)
+Web: HTML/CSS/JS (React planned)
 
-🗄 Database Schema (Simplified)
-Users
+🗄 Database Schema
+users
+Field	Type
+id	PK
+email	unique
+password_hash	string
+expenses
+Field	Type
+id	PK
+user_id	FK → users.id
+amount	number
+category	string
+note	string
+date	date
+created_at	timestamp
+🔐 Authentication
 
-id (primary key)
+Email + password login
 
-email (unique)
+JWT access tokens
 
-password_hash
-
-Expenses
-
-id (primary key)
-
-user_id (foreign key → users.id)
-
-amount
-
-category
-
-note
-
-date
-
-created_at
-
-Each expense belongs to exactly one user.
-
-🔐 Authentication Flow
-
-User registers or logs in with email and password
-
-Backend returns a JWT access token
-
-Clients store the token securely
-
-Token is sent with every request via:
+Token sent via HTTP header:
 
 Authorization: Bearer <token>
 
 
-Backend validates the token and identifies the user
+Backend validates token per request
 
-🔄 Synchronization Model
+🔄 Synchronization Strategy
 
-Clients fetch the latest data from the server on startup
+Clients fetch latest data on startup
 
-Any create/update/delete operation is immediately sent to the backend
+All changes are immediately persisted to the backend
 
-No real-time or offline conflict resolution in the MVP
+No real-time sync or offline conflict handling in MVP
 
-Designed to be extended later if needed
+Architecture allows future extension
 
-🚀 Getting Started (Backend)
-# create virtual environment
+▶️ Running the Backend Locally
 python -m venv venv
 source venv/bin/activate
 
-# install dependencies
 pip install -r requirements.txt
 
-# run the server
 uvicorn app.main:app --reload
 
 
-The API will be available at:
+API available at:
 
 http://localhost:8000
 
 
-Interactive API docs:
+Swagger docs:
 
 http://localhost:8000/docs
 
 🧪 Development Notes
 
-SQLite is used for local development for simplicity
+SQLite used for local development
 
-PostgreSQL is recommended for production
+PostgreSQL recommended for production
 
-The project is intentionally scoped to stay simple while remaining extensible
+Backend-first development approach
 
-Emphasis is placed on clarity, maintainability, and clean separation of concerns
+Emphasis on readability, maintainability, and scalability
 
 🎯 Project Goals
 
-Build a real, usable personal finance tool
+Build a real-world, multi-platform application
+
+Practice backend API & auth design
+
+Demonstrate clean architecture and tradeoff awareness
+
+Serve as a strong portfolio project for software engineering roles
